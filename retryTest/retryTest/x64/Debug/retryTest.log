@@ -1,0 +1,10 @@
+﻿  Main.cpp
+C:\Users\josep\source\repos\retryTest\retryTest\Main.cpp(158,42): warning C4244: 'argument': conversion from '_Ty' to 'GLfloat', possible loss of data
+          with
+          [
+              _Ty=int
+          ]
+C:\Users\josep\source\repos\retryTest\retryTest\Main.cpp(188,92): warning C4244: 'argument': conversion from 'float' to 'GLsizei', possible loss of data
+C:\Users\josep\source\repos\retryTest\retryTest\Main.cpp(142,13): warning C4101: 'voxelSet': unreferenced local variable
+C:\Users\josep\source\repos\retryTest\retryTest\Main.cpp(143,13): warning C4101: 'newArray': unreferenced local variable
+  retryTest.vcxproj -> C:\Users\josep\source\repos\retryTest\x64\Debug\retryTest.exe
