@@ -1,4 +1,5 @@
 #include "Chunk.h"
+#include "World.h"
 #include <iostream>
 
 Chunk::Chunk(int x, int z) : worldX(x), worldZ(z) {
@@ -9,7 +10,7 @@ Chunk::Chunk(int x, int z) : worldX(x), worldZ(z) {
 
 	//fuck git h ub
     generateTerrain();
-    rebuildMesh();
+    //rebuildMesh();
 }
 
 void Chunk::generateTerrain() {
@@ -39,9 +40,9 @@ void Chunk::addFace(std::vector<Vertex>& vertices, std::vector<unsigned int>& in
 	switch (dir) {
 	case TOP:
 
-		vertices.push_back({ {-1 + fx, 1 + fy, 1 + fz}, {0, 0} });
-		vertices.push_back({ {-1 + fx, 1 + fy, -1 + fz}, {0, 1} });
-		vertices.push_back({ {1 + fx, 1 + fy, -1 + fz},   {1, 1} });
+		vertices.push_back({ {fx, 1 + fy, 1 + fz}, {0, 0} });
+		vertices.push_back({ {fx, 1 + fy, fz}, {0, 1} });
+		vertices.push_back({ {1 + fx, 1 + fy, fz},   {1, 1} });
 		vertices.push_back({ {1 + fx, 1 + fy, 1 + fz},    {1, 0} });
 
 		indices.push_back(offset + 0);
@@ -54,10 +55,10 @@ void Chunk::addFace(std::vector<Vertex>& vertices, std::vector<unsigned int>& in
 
 		break;
 	case BOTTOM:
-		vertices.push_back({ {-1 + fx, -1 + fy, 1 + fz}, {0, 0} });
-		vertices.push_back({ {-1 + fx, -1 + fy, -1 + fz}, {0, 1} });
-		vertices.push_back({ {1 + fx, -1 + fy, -1 + fz},   {1, 1} });
-		vertices.push_back({ {1 + fx, -1 + fy, 1 + fz},    {1, 0} });
+		vertices.push_back({ {fx, fy, 1 + fz}, {0, 0} });
+		vertices.push_back({ {fx, fy, fz}, {0, 1} });
+		vertices.push_back({ {1 + fx, fy, fz},   {1, 1} });
+		vertices.push_back({ {1 + fx, fy, 1 + fz},    {1, 0} });
 
 		indices.push_back(offset + 0);
 		indices.push_back(offset + 1);
@@ -69,10 +70,10 @@ void Chunk::addFace(std::vector<Vertex>& vertices, std::vector<unsigned int>& in
 
 		break;
 	case LEFT:
-		vertices.push_back({ {-1 + fx, -1 + fy, -1 + fz}, {0, 0} });
-		vertices.push_back({ {-1 + fx, 1 + fy, -1 + fz}, {0, 1} });
-		vertices.push_back({ {-1 + fx, 1 + fy, 1 + fz},   {1, 1} });
-		vertices.push_back({ {-1 + fx, -1 + fy, 1 + fz},    {1, 0} });
+		vertices.push_back({ {fx, fy, fz}, {0, 0} });
+		vertices.push_back({ {fx, 1 + fy, fz}, {0, 1} });
+		vertices.push_back({ {fx, 1 + fy, 1 + fz},   {1, 1} });
+		vertices.push_back({ {fx, fy, 1 + fz},    {1, 0} });
 
 		indices.push_back(offset + 0);
 		indices.push_back(offset + 1);
@@ -85,10 +86,10 @@ void Chunk::addFace(std::vector<Vertex>& vertices, std::vector<unsigned int>& in
 	case RIGHT:
 		//vertices.push_back({ {-fx, -fy, fz}, {0.0f, 0.0f, 0.0f},    {0, 0} });
 
-		vertices.push_back({ {1 + fx, -1 + fy, 1 + fz}, {0, 0} });
+		vertices.push_back({ {1 + fx, fy, 1 + fz}, {0, 0} });
 		vertices.push_back({ {1 + fx, 1 + fy, 1 + fz}, {0, 1} });
-		vertices.push_back({ {1 + fx, 1 + fy, -1 + fz},   {1, 1} });
-		vertices.push_back({ {1 + fx, -1 + fy, -1 + fz},    {1, 0} });
+		vertices.push_back({ {1 + fx, 1 + fy, fz},   {1, 1} });
+		vertices.push_back({ {1 + fx, fy, fz},    {1, 0} });
 
 		indices.push_back(offset + 0);
 		indices.push_back(offset + 1);
@@ -104,10 +105,10 @@ void Chunk::addFace(std::vector<Vertex>& vertices, std::vector<unsigned int>& in
 	case FRONT:
 
 
-		vertices.push_back({ {-1 + fx, -1 + fy, 1 + fz}, {0, 0} });
-		vertices.push_back({ {-1 + fx, 1 + fy, 1 + fz}, {0, 1} });
+		vertices.push_back({ {fx, fy, 1 + fz}, {0, 0} });
+		vertices.push_back({ {fx, 1 + fy, 1 + fz}, {0, 1} });
 		vertices.push_back({ {1 + fx, 1 + fy, 1 + fz},   {1, 1} });
-		vertices.push_back({ {1 + fx, -1 + fy, 1 + fz},    {1, 0} });
+		vertices.push_back({ {1 + fx, fy, 1 + fz},    {1, 0} });
 
 		indices.push_back(offset + 0);
 		indices.push_back(offset + 1);
@@ -119,10 +120,10 @@ void Chunk::addFace(std::vector<Vertex>& vertices, std::vector<unsigned int>& in
 
 		break;
 	case BACK:
-		vertices.push_back({ {1 + fx, -1 + fy, -1 + fz}, {0, 0} });
-		vertices.push_back({ {1 + fx, 1 + fy, -1 + fz}, {0, 1} });
-		vertices.push_back({ {-1 + fx, 1 + fy, -1 + fz},   {1, 1} });
-		vertices.push_back({ {-1 + fx, -1 + fy, -1 + fz},    {1, 0} });
+		vertices.push_back({ {1 + fx, fy, fz}, {0, 0} });
+		vertices.push_back({ {1 + fx, 1 + fy, fz}, {0, 1} });
+		vertices.push_back({ {fx, 1 + fy, fz},   {1, 1} });
+		vertices.push_back({ {fx, fy, fz},    {1, 0} });
 
 		indices.push_back(offset + 0);
 		indices.push_back(offset + 1);
@@ -136,24 +137,36 @@ void Chunk::addFace(std::vector<Vertex>& vertices, std::vector<unsigned int>& in
 	}
 }
 
-void Chunk::rebuildMesh() {
-    std::vector<Vertex> vertices;
-    std::vector<unsigned int> indices;
+void Chunk::rebuildMesh(World* world) {
+	std::vector<Vertex> vertices;
+	std::vector<unsigned int> indices;
 
-    for (int x = 0; x < 16; x++) {
-        for (int y = 0; y < 16; y++) {
-            for (int z = 0; z < 16; z++) {
-                if (data[x][y][z] == 0) continue;
+	for (int x = 0; x < 16; x++) {
+		for (int y = 0; y < 16; y++) {
+			for (int z = 0; z < 16; z++) {
+				if (data[x][y][z] == 0) continue;
 
-                if (!isSolid(x, y + 1, z)) addFace(vertices, indices, (2 * x), (2 * y), (2 * z), TOP);
-                if (!isSolid(x, y - 1, z)) addFace(vertices, indices, (2 * x), (2 * y), (2 * z), BOTTOM);
-                if (!isSolid(x + 1, y, z)) addFace(vertices, indices, (2 * x), (2 * y), (2 * z), RIGHT);
-                if (!isSolid(x - 1, y, z)) addFace(vertices, indices, (2 * x), (2 * y), (2 * z), LEFT);
-                if (!isSolid(x, y, z + 1)) addFace(vertices, indices, (2 * x), (2 * y), (2 * z), FRONT);
-                if (!isSolid(x, y, z - 1)) addFace(vertices, indices, (2 * x), (2 * y), (2 * z), BACK);
-            }
-        }
-    }
+				// Calculate this block's GLOBAL position
+				int gx = worldX * 16 + x;
+				int gy = y;
+				int gz = worldZ * 16 + z;
+
+				// Check neighbors using the World's global isSolidAt
+				if (!world->isSolidAt(gx, gy + 1, gz))
+					addFace(vertices, indices, x, y, z, TOP);
+				if (!world->isSolidAt(gx, gy - 1, gz))
+					addFace(vertices, indices, x, y, z, BOTTOM);
+				if (!world->isSolidAt(gx + 1, gy, gz))
+					addFace(vertices, indices, x, y, z, RIGHT);
+				if (!world->isSolidAt(gx - 1, gy, gz))
+					addFace(vertices, indices, x, y, z, LEFT);
+				if (!world->isSolidAt(gx, gy, gz + 1))
+					addFace(vertices, indices, x, y, z, FRONT);
+				if (!world->isSolidAt(gx, gy, gz - 1))
+					addFace(vertices, indices, x, y, z, BACK);
+			}
+		}
+	}
 
     indexCount = indices.size();
 
@@ -182,7 +195,7 @@ void Chunk::rebuildMesh() {
 
 void Chunk::render(unsigned int shaderProgram) {
     // 1. Move the chunk to its world position using a Model Matrix
-    glm::mat4 model = glm::translate(glm::mat4(1.0f), glm::vec3(worldX, 0, worldZ));
+    glm::mat4 model = glm::translate(glm::mat4(1.0f), glm::vec3(worldX * 16, 0, worldZ * 16));
 
 
     glUniformMatrix4fv(glGetUniformLocation(shaderProgram, "model"), 1, GL_FALSE, &model[0][0]);

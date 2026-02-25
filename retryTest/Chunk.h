@@ -10,6 +10,8 @@
 
 enum FaceDirection { TOP, BOTTOM, LEFT, RIGHT, FRONT, BACK };
 
+class World; // Forward declaration to avoid circular dependency
+
 class Chunk {
 public:
     // 1. Position and Data
@@ -24,12 +26,14 @@ public:
     ~Chunk();
 
     void generateTerrain();
-    void rebuildMesh();
+    void rebuildMesh(World* world);
     void render(unsigned int shaderProgram);
 
-private:
+
     bool isSolid(int x, int y, int z);
     void addFace(std::vector<Vertex>& vertices, std::vector<unsigned int>& indices, int x, int y, int z, FaceDirection dir);
+
+    bool needsMeshUpdate = true;
 };
 
 #endif

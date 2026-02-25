@@ -1,4 +1,4 @@
 ﻿  Chunk.cpp
-C:\Users\josep\source\repos\retryTest\retryTest\Chunk.cpp(158,30): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
-C:\Users\josep\source\repos\retryTest\retryTest\Chunk.cpp(174,33): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\josep\source\repos\retryTest\retryTest\Chunk.cpp(171,30): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\josep\source\repos\retryTest\retryTest\Chunk.cpp(187,33): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
   retryTest.vcxproj -> C:\Users\josep\source\repos\retryTest\x64\Debug\retryTest.exe

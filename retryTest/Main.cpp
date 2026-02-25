@@ -15,6 +15,7 @@
 #include"Camera.h"
 #include"Window.h"
 #include"Chunk.h"
+#include"World.h"
 
 
 
@@ -147,7 +148,7 @@ struct Chunk {
 
 
 
-int chunk[16][16][16];
+//int chunk[16][16][16];
 
 
 
@@ -165,15 +166,17 @@ std::vector<Vertex> vertices;
 
 std::vector<unsigned int> indices;
 
+World myWorld;
+
 //enum FaceDirection { TOP, BOTTOM, LEFT, RIGHT, FRONT, BACK };
 
 
-
+/*
 bool isSolid(int x, int y, int z) {
 	if (x < 0 || x >= 16 || y < 0 || y >= 16 || z < 0 || z >= 16) return false;
 	return chunk[x][y][z] != 0; // 0 = Air
 }
-
+*/
 //int offset = vertices.size();
 
 
@@ -236,7 +239,7 @@ int main()
 
 	//addFace(vertices, indices, 3, 3, 3, BOTTOM);
 
-
+	/*
 	// Before calling rebuildMesh()
 	for (int x = 0; x < 16; x++) {
 		for (int y = 0; y < 16; y++) {
@@ -245,11 +248,11 @@ int main()
 			}
 		}
 	}
-
+	*/
 
 	// Create two separate chunks
 
-	
+	/*
 			Chunk chunkA(0, 16);
 			Chunk chunkB(16, 16);
 			Chunk chunkC(32, 16);
@@ -260,6 +263,7 @@ int main()
 			Chunk chunkH(112, 16);
 			Chunk chunkI(128, 16);
 			Chunk chunkJ(144, 16);
+			*/
 
 
 			 // 16 units to the right
@@ -459,7 +463,7 @@ int main()
 	// Enables the Depth Buffer
 	glEnable(GL_DEPTH_TEST);
 
-	glDisable(GL_CULL_FACE);
+	//glDisable(GL_CULL_FACE);
 
 	// Enable face-culling
 	glEnable(GL_CULL_FACE);
@@ -471,6 +475,8 @@ int main()
 	// Creates camera object
 	Camera camera(width, height, glm::vec3(0.0f, 0.0f, 2.0f));
 
+	/*
+
 	int widthImg, heightImg, numColCh;
 
 	unsigned char* bytes = stbi_load("C:/Users/josep/source/repos/retryTest/retryTest", &widthImg, &heightImg, &numColCh, 4);
@@ -481,6 +487,8 @@ int main()
 		glGenerateMipmap(GL_TEXTURE_2D);
 		stbi_image_free(bytes);
 	}
+
+	*/
 
 
 
@@ -540,7 +548,7 @@ int main()
 		//int modelLoc = glGetUniformLocation(shaderProgram.ID, "model");
 		//glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 
-		glm::vec4 translateWorldMatrix = glm::vec4(1.0f);
+		//glm::vec4 translateWorldMatrix = glm::vec4(1.0f);
 
 		
 		
@@ -549,6 +557,7 @@ int main()
 
 		//struct Block newBlock;
 
+		/*
 		int newBlock[16];
 
 		GLfloat newBlock_data[16];
@@ -574,7 +583,7 @@ int main()
 
 
 
-
+		*/
 
 
 
@@ -615,14 +624,14 @@ int main()
 
 
 
-
+		/*
 		float number = 1;
 
 		int numberLoc = glGetUniformLocation(shaderProgram.ID, "number");
 		glUniform1f(numberLoc, number);
 
 		
-		
+		*/
 
 		
 	
@@ -631,13 +640,15 @@ int main()
 
 
 		// Draw primitives, number of indices, datatype of indices, index of indices
-		glDrawElements(GL_TRIANGLES, (GLsizei)indices.size(), GL_UNSIGNED_INT, 0);
+		//glDrawElements(GL_TRIANGLES, (GLsizei)indices.size(), GL_UNSIGNED_INT, 0);
 
 		
 
 		
 
 		glUseProgram(shaderProgram.ID);
+
+		
 
 		// 1. "Tune" the GPU to Channel 0
 		glActiveTexture(GL_TEXTURE0);
@@ -653,10 +664,10 @@ int main()
 		else {
 			std::cout << "ERROR: Could not find 'ourTexture' in shader!" << std::endl;
 		}
-
-
 		
 
+		
+		/*
 		// Draw them
 		chunkA.render(shaderProgram.ID);
 		chunkB.render(shaderProgram.ID);
@@ -668,6 +679,23 @@ int main()
 		chunkH.render(shaderProgram.ID);
 		chunkI.render(shaderProgram.ID);
 		chunkJ.render(shaderProgram.ID);
+
+		*/
+
+
+		myWorld.update(camera.Position);
+
+		// 3. Mesh Management 
+		for (auto const& pair : myWorld.chunks) {
+			Chunk* chunk = pair.second;
+			if (chunk->needsMeshUpdate) {
+				chunk->rebuildMesh(&myWorld);
+				chunk->needsMeshUpdate = false;
+			}
+		}
+
+		// 3. Render
+		myWorld.render(shaderProgram.ID);
 
 
 		
