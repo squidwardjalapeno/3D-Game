@@ -1,8 +1,9 @@
 # 🧊 [OpenGL C++] 3D Voxel Engine
 
-<img src="https://img.shields.io/badge/C%2B%2B-darkblue?style=flat-square" alt="C++">
-<img src="https://img.shields.io/badge/OpenGL-cyan?style=flat-square" alt="OpenGL">
-<img src="https://img.shields.io/badge/FREE-yellow?style=flat-square" alt="FREE">
+<a href="#"><img src="https://img.shields.io/badge/C%2B%2B-darkblue?style=flat-square" alt="C++"></a>
+<a href="#"><img src="https://img.shields.io/badge/OpenGL-cyan?style=flat-square" alt="OpenGL"></a>
+<a href="#"><img src="https://img.shields.io/badge/FREE-yellow?style=flat-square" alt="FREE"></a>
+
 
 > A high-performance, from-scratch voxel engine built with C++ and OpenGL. Follow the development journey on YouTube!
 
