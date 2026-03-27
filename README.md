@@ -1,11 +1,8 @@
 # 🧊 [OpenGL C++] 3D Voxel Engine
 
-![C++](https://img.shields.io/badge/C%2B%2B-darkblue
-)
-![OpenGL](https://img.shields.io/badge/OpenGL-cyan
-)
-![FREE](https://img.shields.io/badge/FREE-yellow
-)
+![C++](https://img.shields.io/badge/C%2B%2B-darkblue)
+![OpenGL](https://img.shields.io/badge/OpenGL-cyan)
+![FREE](https://img.shields.io/badge/FREE-yellow)
 
 > A high-performance, from-scratch voxel engine built with C++ and OpenGL. Follow the development journey on YouTube!
 
