@@ -14,7 +14,7 @@
 ## 📺 Follow the Tutorial Series
 This repository contains the source code for my Voxel Engine tutorial series. Each episode has its own dedicated branch.
 
-[![Watch the Series](https://img.shields.io/badge/Watch%20the%20Series!-%239b111e
+[![Watch the Series](https://img.shields.io/badge/Watch%20the%20Series!-%239b111e?style=for-the-badge&logo=youtube
 )](https://youtube.com/playlist?list=PLQ7CpbxNS-_YP1WhUAVmxRQuF_a4PLju_&si=WWza8rK-kYPYveLP)
 
 ---
