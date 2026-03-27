@@ -1,8 +1,11 @@
 # 🧊 [OpenGL C++] 3D Voxel Engine
 
-![C++](https://img.shields.io)
-![OpenGL](https://img.shields.io)
-![License](https://img.shields.io)
+![C++](https://img.shields.io/badge/C%2B%2B-darkblue
+)
+![OpenGL](https://img.shields.io/badge/OpenGL-cyan
+)
+![FREE](https://img.shields.io/badge/FREE-yellow
+)
 
 > A high-performance, from-scratch voxel engine built with C++ and OpenGL. Follow the development journey on YouTube!
 
@@ -11,7 +14,8 @@
 ## 📺 Follow the Tutorial Series
 This repository contains the source code for my Voxel Engine tutorial series. Each episode has its own dedicated branch.
 
-[![Watch the Series](https://img.shields.io)](https://youtube.com/playlist?list=PLQ7CpbxNS-_YP1WhUAVmxRQuF_a4PLju_&si=WWza8rK-kYPYveLP)
+[![Watch the Series](https://img.shields.io/badge/Watch%20the%20Series!-%239b111e
+)](https://youtube.com/playlist?list=PLQ7CpbxNS-_YP1WhUAVmxRQuF_a4PLju_&si=WWza8rK-kYPYveLP)
 
 ---
 
